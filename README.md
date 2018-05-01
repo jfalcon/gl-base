@@ -93,7 +93,7 @@ Application icon graciously provided by iconshock.com as part of their SIGMA Gra
 
 ## History
 
-2017-11-14 - Ver. 1.3 released.
-2014-11-26 - Ver. 1.2 released.
-2006-08-27 - Ver. 1.1 released.
-2006-08-26 - Ver. 1.0 released.
+* 2017-11-14 - Ver. 1.3 released.
+* 2014-11-26 - Ver. 1.2 released.
+* 2006-08-27 - Ver. 1.1 released.
+* 2006-08-26 - Ver. 1.0 released.
