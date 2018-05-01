@@ -266,7 +266,7 @@ GetCmdLineValue (const LPTSTR szArg, LPTSTR szDest, size_t nLen)
     LPTSTR szTest=NULL;         // worker variable
     bool bRetVal = false;       // return value
 
-    szCmd = GetCommandLine();   // unicode safe
+    szCmd = GetCommandLine();   // Unicode safe
 
     // validate our data before continuing
     if(((szArg != NULL) && (_tcslen(szArg) > 0)) && ((szCmd != NULL) && (_tcslen(szCmd) > 0)))

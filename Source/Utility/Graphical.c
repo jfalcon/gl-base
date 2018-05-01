@@ -100,7 +100,7 @@ OnGLError (LPCTSTR szProcedure)
         _stprintf_s(szOutput, STRING_SIZE(szOutput),
             _T("The OpenGL subsystem has generated the following error.\n\nError Info:\t%s\nProcedure:\t%s"), szError, szProcedure);
 
-        MessageBox(NULL, szOutput, _T("Debug Mode Ouput"), MB_OK|MB_ICONERROR|MB_TASKMODAL);
+        MessageBox(NULL, szOutput, _T("Debug Mode Output"), MB_OK|MB_ICONERROR|MB_TASKMODAL);
 
         // let the caller know we had an error
         bReturn = true;

@@ -13,7 +13,7 @@
 // simplify the testing of a minimum version of Windows requirement being met
 #define WIN_MIN_VERSION(nMajor, nMinor) (((BYTE)LOBYTE(LOWORD(GetVersion())) >= nMajor) && ((BYTE)HIBYTE(LOWORD(GetVersion())) >= nMinor))
 
-// simplify the testing of whether or not the host os is NT-based or 9x
+// simplify the testing of whether or not the host OS is NT-based or 9x
 #define IS_WINNT (GetVersion() < (DWORD)0x80000000)
 
 // HWND_BOTTOM, HWND_TOP, etc. are already defined in Winuser.h, and we don't want to cause possible

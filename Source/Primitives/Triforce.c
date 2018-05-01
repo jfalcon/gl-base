@@ -10,8 +10,8 @@
 / / PARAMETERS:
 / /     dElapsed = how many CPU cycles per second have passed recently, we use this as
 / /                a factor to help throttle animation either up or down as needed
-/ /     nWidth =   width of the redner context in which to draw on
-/ /     nHeight =  height of the redner context in which to draw on
+/ /     nWidth =   width of the render context in which to draw on
+/ /     nHeight =  height of the render context in which to draw on
 / /
 / / PURPOSE:
 / /     This draws a triforce on the main render context within the scope of the render thread.

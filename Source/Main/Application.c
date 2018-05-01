@@ -1,7 +1,6 @@
 #include "Main\Application.h"    // standard application include
 #include "Main\Render.h"         // main rendering routines
 #include "Utility\General.h"     // general utility routines
-#include "Primitives\Triforce.h" // zelda triforce primitive
 #include <VersionHelpers.h>      // used to determine OS version
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +40,7 @@
 / /     THIS CODE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT
 / /     NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 / /
-/ /  Acknowledgements:
+/ /  Acknowledgments:
 / /     The main application icon included with this distribution was graciously donated by iconshock.com,
 / /     for non-commercial use only, as part of their Sigma collection.
 / /
@@ -207,11 +206,6 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmd
                 args.hWnd = hWnd;
                 args.hDC = hDC;
 
-                ///// THIS IS WHERE THE MAIN RENDER ROUTINE IS SET //////
-
-                // set the main render delegate to be the triforce
-                args.pRenderFrame = TriforcePrimitive;
-
                 // initialize the rendering context in a separate thread (do not use CreateThread()
                 // to avoid leaks caused by the CRT when trying to use standard CRT libs)
                 _hRenderThread = (HANDLE)_beginthreadex(NULL, 0, RenderMain, &args, 0, &_nRenderThreadID);
@@ -226,7 +220,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmd
                 while(GetMessage(&msg, NULL, 0, 0) != 0)
                 {
                     // send the message off to the appropriate window procedure, as a security
-                    // precaution only do so if it belongs to the the main window in question
+                    // precaution only do so if it belongs to the main window in question
                     if(msg.hwnd == hWnd)
                     {
                         TranslateMessage(&msg);
@@ -278,7 +272,7 @@ __wndProc (HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
         case UWM_SHOW:
 
-            // the render thread will send this message when its inits are done
+            // the render thread will send this message when its initialization is done
             // wParam will contain true if we are to maximize the window
             if((bool)wParam == true)
             {
@@ -550,7 +544,7 @@ __procStartOptions (PRENDERARGS pArgs, PRECT pWndRect, HANDLE *pMutex)
 {
     bool bReturn = true;
 
-    // first and foremost, make sure the host os meets our requirements
+    // first and foremost, make sure the host OS meets our requirements
     // and, let's hope and pray you don't support anything below XP
     if(!IsWindowsXPOrGreater())
     {

@@ -3,7 +3,7 @@
 
 #pragma once  // in case the compiler supports it
 
-// delegate function to be called when a frame needs to be renderred
+// delegate function to be called when a frame needs to be rendered
 // it will be called in the context of the RC that requires it
 typedef void (*RenderDelegate) (const double dElapsed, const unsigned int nWidth, const unsigned int nHeight);
 
@@ -17,7 +17,6 @@ typedef struct
     BYTE    nRefresh;               // vertical refresh rate of the display in hertz (ignored if windowed)
     bool    bFullscreen;            // flag to indicate to the thread if we are in fullscreen mode
     bool    bZoomed;                // flag to indicate to the thread if we are to maximize the main window
-    RenderDelegate pRenderFrame;    // delegate function to be called when a frame needs to be renderred
 
 }  RENDERARGS, *PRENDERARGS;
 

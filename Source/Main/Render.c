@@ -1,6 +1,7 @@
-#include "Main\Application.h"   // standard application include
-#include "Main\Render.h"        // include for this file
-#include "Utility\Graphical.h"  // graphical utility routines
+#include "Main\Application.h"    // standard application include
+#include "Main\Render.h"         // include for this file
+#include "Primitives\Triforce.h" // Zelda triforce primitive
+#include "Utility\Graphical.h"   // graphical utility routines
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////// MAIN OPENGL RENDERING ROUTINES ///////////////////////////////////////////////////////////
@@ -17,6 +18,9 @@ static void   __initRender    (const PRENDERARGS pArgList);
 static void   __onResizeFrame (HWND hWnd, unsigned int nWidth, unsigned int nHeight);
 static void   __threadProc    (UINT uMsg, WPARAM wParam, LPARAM lParam);
 
+// local variables
+static RenderDelegate _pRenderFrame = NULL; // delegate function to be called when a frame needs to be rendered
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*/
@@ -28,30 +32,30 @@ static void   __threadProc    (UINT uMsg, WPARAM wParam, LPARAM lParam);
 / /     pArgList->nRefresh;        // vertical refresh rate of the display in hertz (ignored if windowed)
 / /     pArgList->bFullscreen;     // flag to indicate to the thread if we are in fullscreen mode
 / /     pArgList->bZoomed;         // flag to indicate to the thread if we are to maximize the main window
-/ /     pArgList->pRenderFrame;    // delegate function to be called when a frame needs to be renderred
+/ /     pArgList->pRenderFrame;    // delegate function to be called when a frame needs to be rendered
 / /
 / / PURPOSE:
 / /        Wraps the process of calling initialization routines and
 / /        contains the main loop for the rendering functions.
 / /
 / / NOTE:
-/ /        The function must be declaed as __stdcall. Also, this function is in a seperate worker thread!
+/ /        The function must be declared as __stdcall. Also, this function is in a separate worker thread!
 /*/
 
 unsigned int __stdcall
 RenderMain (const PRENDERARGS pArgList)
 {
     #ifdef _DEBUG
-        DWORD dwFPSCurrent = 0, dwFPSLast = 0;  // used to help calc the fps
-        unsigned short nFPS = 0;                // current framerate/FPS for the main loop
+        DWORD dwFPSCurrent = 0, dwFPSLast = 0;  // used to help calculate the frame rate (FPS)
+        unsigned short nFPS = 0;                // current frame rate (FPS) for the main loop
     #endif
 
-    static double dLastTime = 0, dCurTime = 0;  // used to calc CPU cycles during a render
-    static double dElapsed = 0;                 // used to calc CPU cycles during a render
+    static double dLastTime = 0, dCurTime = 0;  // used to calculate CPU cycles during a render
+    static double dElapsed = 0;                 // used to calculate CPU cycles during a render
 
     HGLRC hRC     = NULL;                       // handle to the GLs render context
     RECT rcClient = {0};                        // coordinates of the area safe to draw on
-    MSG msg       = {0};                        // message struct for the queue
+    MSG msg       = {0};                        // message structure for the queue
 
     // create and activate (in OGL) the render context
     hRC = wglCreateContext(pArgList->hDC);
@@ -75,9 +79,9 @@ RenderMain (const PRENDERARGS pArgList)
 
     // note: this is the main render loop used for OpenGL, it's an endless loop
     // with low level access to the video hardware, use this power wisely
-    while(!_bStopRenderThread)
+    while(!_bStopRenderThread && (_pRenderFrame != NULL))
     {
-        // NOTE: it is imparative that PeekMessage() is used rather than GetMessage()
+        // NOTE: it is imperative that PeekMessage() is used rather than GetMessage()
         // listen to the queue in case this thread receives a message
         if(PeekMessage(&msg, NULL, UWM_PAUSE, UWM_STOP, PM_REMOVE)) __threadProc(msg.message, msg.wParam, msg.lParam);
 
@@ -112,7 +116,7 @@ RenderMain (const PRENDERARGS pArgList)
                 // we use time-based rendering, so the time argument should be used as a factor
                 dCurTime = GetCPUTicks();
                 dElapsed = dCurTime - dLastTime;
-                pArgList->pRenderFrame(dElapsed, rcClient.right, rcClient.bottom);
+                _pRenderFrame(dElapsed, rcClient.right, rcClient.bottom);
                 dLastTime = dCurTime;
 
                 #ifdef _DEBUG
@@ -127,7 +131,7 @@ RenderMain (const PRENDERARGS pArgList)
 
                     if(!pArgList->bFullscreen)
                     {
-                        // display FPS on the titlebar of the main window if not in fullscreen mode
+                        // display the FPS on the title bar of the main window if not in fullscreen mode
                         if(nFPS == 0)
                         {
                             dwFPSLast = dwFPSCurrent;
@@ -146,7 +150,7 @@ RenderMain (const PRENDERARGS pArgList)
                                 size_t nConverted = 0;
 
                                 // to save performance, only update the window title once a second
-                                // also, place the OGL version information in the titlebar
+                                // also, place the OGL version information in the title bar
                                 mbstowcs_s(&nConverted, szVersion, MAX_LOADSTRING, (const char *)glGetString(GL_VERSION), MAX_LOADSTRING);
                                 wsprintf(szBuff, _T("OpenGL %s - %hu FPS"), szVersion, nFPS);
                                 SetWindowText(pArgList->hWnd, szBuff);
@@ -200,8 +204,11 @@ __initRender (const PRENDERARGS pArgList)
         if(pArgList->bVSync == yes)     SetVerticalSync(true);
         else if(pArgList->bVSync == no) SetVerticalSync(false);
 
-        glShadeModel(GL_SMOOTH);                    // enable smooth shading
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);       // black background/clear color
+        // enable smooth shading
+        glShadeModel(GL_SMOOTH);
+
+        // black background (clear) color
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
         // set-up the depth buffer
         glClearDepth(1.0f);
@@ -213,7 +220,7 @@ __initRender (const PRENDERARGS pArgList)
         glPixelStorei(GL_PACK_ALIGNMENT, 1);
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-        // use backface culling (this is 2D, so we'll never see the back faces anyway)
+        // use back-face culling
         glFrontFace(GL_CW);
         glCullFace(GL_BACK);
 
@@ -224,6 +231,11 @@ __initRender (const PRENDERARGS pArgList)
         glEnable(GL_LIGHTING);
         glEnable(GL_LIGHT0);
         glLightfv(GL_LIGHT0, GL_POSITION, LightPos);
+
+        ///// THIS IS WHERE THE MAIN RENDER ROUTINE IS SET //////
+
+        // set the main render delegate to be the triforce
+        _pRenderFrame = TriforcePrimitive;
     }
 }
 
@@ -233,9 +245,9 @@ __initRender (const PRENDERARGS pArgList)
 / / void
 / /        OnResizeFrame (HWND hWnd, unsigned int nWidth, unsigned int nHeight)
 / /
-/ /        hWnd = handle to the window who's client area is attach to the rc
-/ /        nWidth = width to resize to (passed to save calcs)
-/ /        nHeight = height to resize to (passed to save calcs)
+/ /        hWnd = handle to the window who's client area is attach to the RC
+/ /        nWidth = width to resize to (passed to save calculations)
+/ /        nHeight = height to resize to (passed to save calculations)
 / /
 / / PURPOSE:
 / /        This routine sets up the perspective and viewport used by OGL.
@@ -274,8 +286,8 @@ __onResizeFrame (HWND hWnd, unsigned int nWidth, unsigned int nHeight)
 / /        ThreadProc (UINT uMsg, WPARAM wParam, LPARAM lParam)
 / /
 / /        uMsg = message to process
-/ /        wParam = word sized param who's value depends on the message
-/ /        lParam = long sized param who's value depends on the message
+/ /        wParam = word sized parameter who's value depends on the message
+/ /        lParam = long sized parameter who's value depends on the message
 / /
 / / PURPOSE:
 / /        Procedure to handle messages for this thread.

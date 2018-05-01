@@ -96,7 +96,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>$(SolutionDir)Intermediate\$(Configuration)\GLBase.tlb</TypeLibraryName>
+      <TypeLibraryName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
@@ -106,10 +106,10 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(SolutionDir)Intermediate\$(Configuration)</AssemblerListingLocation>
-      <ObjectFileName>$(SolutionDir)Intermediate\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)Intermediate\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)</AssemblerListingLocation>
+      <ObjectFileName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\</AdditionalIncludeDirectories>
@@ -122,13 +122,13 @@
       <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)Binary\$(Platform)\$(Configuration)\GLBase.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ProgramDatabaseFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.bsc</OutputFile>
+      <OutputFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -136,7 +136,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TypeLibraryName>$(SolutionDir)Intermediate\$(Configuration)\GLBase.tlb</TypeLibraryName>
+      <TypeLibraryName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -147,10 +147,10 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(SolutionDir)Intermediate\$(Configuration)</AssemblerListingLocation>
-      <ObjectFileName>$(SolutionDir)Intermediate\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)Intermediate\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)</AssemblerListingLocation>
+      <ObjectFileName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\</AdditionalIncludeDirectories>
@@ -163,12 +163,12 @@
       <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)Binary\$(Platform)\$(Configuration)\GLBase.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ProgramDatabaseFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.bsc</OutputFile>
+      <OutputFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -177,7 +177,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>$(SolutionDir)Intermediate\$(Configuration)\GLBase.tlb</TypeLibraryName>
+      <TypeLibraryName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
@@ -186,10 +186,10 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(SolutionDir)Intermediate\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(SolutionDir)Intermediate\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)Intermediate\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -204,14 +204,14 @@
       <OutputFile>$(SolutionDir)Binary\$(Platform)\$(Configuration)\GLBase.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.bsc</OutputFile>
+      <OutputFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -219,7 +219,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TypeLibraryName>$(SolutionDir)Intermediate\$(Configuration)\GLBase.tlb</TypeLibraryName>
+      <TypeLibraryName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -228,10 +228,10 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(SolutionDir)Intermediate\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(SolutionDir)Intermediate\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)Intermediate\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -246,13 +246,13 @@
       <OutputFile>$(SolutionDir)Binary\$(Platform)\$(Configuration)\GLBase.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(SolutionDir)Intermediate\$(Configuration)\GLBase.bsc</OutputFile>
+      <OutputFile>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\GLBase.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
